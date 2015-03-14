@@ -2,14 +2,22 @@
 
 class App.views.ItemView extends Backbone.View
   template: HandlebarsTemplates['item']
+  events:
+    'click h2': 'toggleChildren'
 
-  showChildren: () ->
-    if @model.get('children').length > 0
-      children  = new App.collections.Items(@model.get('children'))
-      childView = new App.views.ItemListView(collection: children)
-      @$el.append(childView.render().el)
+  initialize: () ->
+    @children = new App.collections.Items(@model.get('children'))
+    @state    = collapsed: false
+
+  renderChildren: () ->
+    childView = new App.views.ItemListView(collection: @children)
+    @$el.append(childView.render().el)
+
+  toggleChildren: () ->
+    @state.collapsed = !@state.collapsed
+    @render()
 
   render: ->
     @$el.html @template(@model.attributes)
-    @showChildren()
+    @renderChildren() unless @state.collapsed or @children.isEmpty()
     this
