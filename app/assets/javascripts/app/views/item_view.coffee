@@ -13,9 +13,6 @@ class App.views.ItemView extends Backbone.View
     @children = new App.collections.Items(@model.get('children'))
     @state    = collapsed: false
 
-    Backbone.Events.bind 'saveAllItems', =>
-      @model.save() if @model.hasChanged()
-
   renderChildren: () ->
     childView = new App.views.ItemListView(collection: @children)
     @$el.append(childView.render().el)
