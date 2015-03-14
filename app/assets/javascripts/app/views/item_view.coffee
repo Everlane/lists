@@ -1,13 +1,15 @@
-class App.views.ItemView extends Backbone.View
-  initialize: (item) ->
-    @item = item
+#= require app/collections/items
 
-  appendChildren: () ->
-    for child in @item.children
-      childView = new App.views.ItemView(child)
-      @$el = childView.render().el
+class App.views.ItemView extends Backbone.View
+  template: HandlebarsTemplates['item']
+
+  showChildren: () ->
+    children  = new App.collections.Items(@model.get('children'))
+    childView = new App.views.ItemListView(collection: children)
+    console.log(childView.render().el)
+    @$el.append(childView.render().el)
 
   render: ->
-    @el = HandlebarsTemplates['item'](@item)
-    @appendChildren()
+    @$el.html @template(@model.attributes)
+    @showChildren()
     this
