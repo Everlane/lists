@@ -1,5 +1,5 @@
-<li class="item">
-  <a href="javascript:;" class="collapse">[Collapse]</a>
-  <h2 class="title" contentEditable>{{title}}</h2>
-  <p class="content" contentEditable>{{content}}</p>
-</li>
+{{#if children}}
+  <a href="javascript:;" class="collapse">[-]</a>
+{{/if }}
+<h2 class="title" contentEditable>{{title}}</h2>
+<p class="content" contentEditable>{{content}}</p>

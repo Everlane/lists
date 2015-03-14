@@ -1,0 +1,25 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700);
+
+body {
+  width: 70%;
+  margin: 0 auto;
+  font-family: "Source Sans Pro";
+}
+
+h1 {
+  font-weight: 700;
+}
+
+.item {
+  h2 {
+    display: inline;
+    font-weight: 200;
+    font-size: 1.3em;
+  }
+
+  .collapse {
+    font-size: 0.8em;
+    padding-right: 5px;
+    color: #AAA;
+  }
+}

@@ -1,6 +1,8 @@
 #= require app/collections/items
 
 class App.views.ItemView extends Backbone.View
+  tagName: 'li'
+  className: 'item'
   template: HandlebarsTemplates['item']
   events:
     'click .collapse': 'toggleChildren'
