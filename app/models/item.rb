@@ -9,8 +9,15 @@ class Item < ActiveRecord::Base
     where(parent_id: nil)
   }
 
-  def serialize
-    to_json
+  default_scope -> {
+    order('position ASC')
+  }
+
+  before_validation :set_initial_position
+
+  def set_initial_position
+    others = parent ? parent.children.count : Item.root.count
+    self.position = others + 1
   end
 
 end
