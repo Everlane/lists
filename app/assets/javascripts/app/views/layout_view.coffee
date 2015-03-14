@@ -8,4 +8,4 @@ class App.views.LayoutView extends Backbone.View
 
     for item in @items
       itemView = new App.views.ItemView(item)
-      @$el.find('.main-list').append itemView.render()
+      @$el.find('.main-list').append itemView.render().el
