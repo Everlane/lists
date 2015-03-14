@@ -1,4 +1,10 @@
 class App.views.LayoutView extends Backbone.View
+  events:
+    'click .save-button': 'saveAllItems'
+
+  saveAllItems: () ->
+    Backbone.Events.trigger('saveAllItems')
+
   initialize: (opts) ->
     @items = new App.collections.Items(opts.data)
     @render()
