@@ -32,8 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Handlebars!!!!
-gem 'handlebars_assets'
+gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 
 
 group :development, :test do

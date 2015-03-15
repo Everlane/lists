@@ -1,4 +1,0 @@
-window.App = {
-  views: {}
-  models: {}
-}
