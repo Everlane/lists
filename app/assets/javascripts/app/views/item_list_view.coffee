@@ -4,18 +4,27 @@
 This class is responsible for showing a list of items. Whether items have
 children is not the concern of this class. It only knows about what items
 should be displayed sequentially.
+
+This is also the element that is "sortable" - its children (ItemViews) will be
+drag-and-droppable and will be reordered accordingly.
 ###
 class App.views.ItemListView extends Backbone.View
   tagName: 'ol'
   className: 'item-list'
 
-  render: ->
+  makeMyselfSortable: () ->
+    @$el.sortable
+      handle: '.handle'              # icon that will be used for dragging
+      connectWith: '.' + @className  # class of all other sortable lists
+      update: (e, ui) =>             # triggered whenever something changes
+        Backbone.Events.trigger 'itemChangedPosition',
+          id:        ui.item.data('id')
+          position:  ui.item.index()
+          parent_id: @$el.parent().data('id') || 0
+
+  render: () ->
     @collection.each (item) =>
       view = new App.views.ItemView(model: item)
       @$el.append view.render().el
-
-    @$el.sortable
-      update: (e, ui) =>
-        @collection.first().set('position', ui.item.index())
-
+    @makeMyselfSortable()
     this

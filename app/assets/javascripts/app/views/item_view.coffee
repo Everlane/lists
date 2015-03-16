@@ -28,14 +28,20 @@ class App.views.ItemView extends Backbone.View
     @render()
 
   updateTitle: (e) ->
-    text = $(e.currentTarget).text()
-    @model.set('title', text)
+    title = $(e.currentTarget)
+    # Careful! The title that was edited might be the title of one of my children
+    if title.parent().data('id') == @model.get('id')
+      @model.set('title', title.text())
 
   updateContent: (e) ->
-    text = $(e.currentTarget).text()
-    @model.set('content', text)
+    content = $(e.currentTarget)
+    # Same as above
+    if content.parent().data('id') == @model.get('id')
+      @model.set('content', content.text())
 
   render: ->
     @$el.html @template(@model.attributes)
+    # As much as I hate doing this, it's necessary for drag and drop.
+    @$el.attr "data-id", @model.get('id')
     @renderChildren() unless @state.collapsed or @children.isEmpty()
     this

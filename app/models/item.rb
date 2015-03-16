@@ -13,7 +13,7 @@ class Item < ActiveRecord::Base
     order('position ASC')
   }
 
-  before_validation :set_initial_position
+  before_create :set_initial_position
 
   def set_initial_position
     others = parent ? parent.children.count : Item.root.count
