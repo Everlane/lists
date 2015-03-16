@@ -1,5 +1,11 @@
 #= require app/collections/items
 
+###
+This class is responsible for displaying a single item. Items may or may not
+have child items. If our item does have children, we put them in an ItemListView.
+
+ItemViews can collapse (stop displaying) their children.
+###
 class App.views.ItemView extends Backbone.View
   tagName: 'li'
   className: 'item'
