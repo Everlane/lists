@@ -8,4 +8,9 @@ class App.views.ItemListView extends Backbone.View
     @collection.each (item) =>
       view = new App.views.ItemView(model: item)
       @$el.append view.render().el
+
+    @$el.sortable
+      update: (e, ui) =>
+        @collection.first().set('position', ui.item.index())
+
     this
