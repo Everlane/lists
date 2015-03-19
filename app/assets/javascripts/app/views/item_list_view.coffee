@@ -16,11 +16,8 @@ class App.views.ItemListView extends Backbone.View
     @$el.sortable
       handle: '.handle'              # icon that will be used for dragging
       connectWith: '.' + @className  # class of all other sortable lists
-      update: (e, ui) =>             # triggered whenever something changes
-        Backbone.Events.trigger 'itemChangedPosition',
-          id:        ui.item.data('id')
-          position:  ui.item.index()
-          parent_id: @$el.parent().data('id') || 0
+      stop: (e, ui) ->               # triggered whenever something changes
+        Backbone.Events.trigger 'itemChangedPosition'
 
   render: () ->
     @collection.each (item) =>

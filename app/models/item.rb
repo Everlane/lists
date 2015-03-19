@@ -6,7 +6,7 @@ class Item < ActiveRecord::Base
   accepts_nested_attributes_for :children
 
   scope :root, -> {
-    where(parent_id: nil)
+    where(parent_id: [nil, 0])
   }
 
   default_scope -> {

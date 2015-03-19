@@ -6,6 +6,3 @@ class App.models.Item extends Backbone.Model
   initialize: ->
     Backbone.Events.bind 'saveAllItems', =>
       @save() if @hasChanged()
-
-    Backbone.Events.bind 'itemChangedPosition', (data) =>
-      @set(data) if data.id == @get('id')
