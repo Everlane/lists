@@ -1,2 +1,4 @@
-json.title item.title
-json.content item.content
+item ||= @item
+
+json.extract! item, :id, :title, :content, :position
+json.children item.children, partial: 'api/items/item', as: :item

@@ -54,7 +54,9 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root to: 'items#index'
-  resources :items
+  namespace :api do
+    resources :items
+  end
 
+  root to: 'items#index'
 end

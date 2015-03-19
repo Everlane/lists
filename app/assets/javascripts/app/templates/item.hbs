@@ -1,9 +1,7 @@
-<li class="item">
-  <h2>
-    {{title}}
-  </h2>
+{{#if children}}
+  <a href="javascript:;" class="collapse">[-]</a>
+{{/if }}
 
-  <p>
-    {{content}}
-  </p>
-</li>
+<span class="handle">☰</span>
+<h2 class="title" contentEditable>{{title}}</h2>
+<p class="content" contentEditable>{{content}}</p>
