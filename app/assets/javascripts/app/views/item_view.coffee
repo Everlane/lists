@@ -1,4 +1,5 @@
 class App.views.ItemView extends Backbone.View
+  tagName: 'li'
   template: HandlebarsTemplates['item']
 
   initialize: (options) ->

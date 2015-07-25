@@ -1,5 +1,6 @@
 class App.views.LayoutView extends Backbone.View
   template: HandlebarsTemplates['layout']
+  
   initialize: (options) ->
     @items = new App.collections.Items(options.data)
     @render()

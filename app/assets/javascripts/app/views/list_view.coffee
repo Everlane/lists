@@ -1,4 +1,6 @@
 class App.views.ListView extends Backbone.View
+  tagName: 'ol'
+  
   initialize: (options) ->
     @items = options.items
 
