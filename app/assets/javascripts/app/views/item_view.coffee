@@ -1,6 +1,9 @@
 class App.views.ItemView extends Backbone.View
-  initialize: (item) ->
-    @item = item
+  template: HandlebarsTemplates['item']
+
+  initialize: (options) ->
+    @item = options.item
 
   render: ->
-    HandlebarsTemplates['item'](@item)
+    @$el.html(@template(item: @item.toJSON()))
+    this
