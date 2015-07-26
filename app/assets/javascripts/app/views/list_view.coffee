@@ -10,17 +10,17 @@ class App.views.ListView extends Backbone.View
   handleToggleButton: (
     parentId, originalParentId, siblings, endingPosition) ->
 
-    # ensure that the new parent's toggle-children button displays
+    # Ensure that the new parent's toggle-children button displays.
     $($('#' + parentId).find('.toggle-children')[0]).show()
 
-    # if the original parent doesn't have children anymore, hide its
-    # toggle-children button
+    # If the original parent doesn't have children anymore, hide its
+    # toggle-children button.
     if $('#' + originalParentId).find('ol li').length == 0
       $($('#' + originalParentId).find('.toggle-children')[0]).hide()
 
-  # sets the new positions and parent. It's important to go through all
+  # Sets the new positions and parent. It's important to go through all
   # sibling elements to ensure their positions never overlap in case of
-  # multiple insertions into the same list index
+  # multiple insertions into the same list index.
   handleNewPositions: (siblings, endingPosition, parentId, movedId) ->
     i = 0
     siblings.each (idx, item) ->

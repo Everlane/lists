@@ -7,7 +7,7 @@ class App.views.ItemView extends Backbone.View
     @item = options.item
     @children = new App.collections.Items(@item.get('children'))
     @$el.attr('id', @item.id)
-    @displayChildren = true
+    @showChildren = true
 
   events:
     'click .toggle-children': 'toggleChildren'
@@ -26,31 +26,30 @@ class App.views.ItemView extends Backbone.View
 
   toggleChildren: (e) ->
     e.stopPropagation()
-    @displayChildren = !@displayChildren
-    if @displayChildren then toggleSwitch = '[-]' else toggleSwitch = '[+]'
+    @showChildren = !@showChildren
+    if @showChildren then toggleSwitch = '[-]' else toggleSwitch = '[+]'
 
     $(e.currentTarget).html(toggleSwitch)
     nextol = $($(e.delegateTarget).find('ol')[0])
     nextol.toggleClass('hide-children')
 
-
-  showChildren: () ->
+  displayChildren: () ->
     childrenListView = new App.views.ListView(
       items: @children,
       parent: @item.id
       )
     @$el.append(childrenListView.render().el)
 
+    if @$el.find('ol li').length == 0
+      @$el.find('.toggle-children').hide()
+
   render: ->
     content = @template({
       item: @item.toJSON()
     })
     @$el.html(content)
-    @showChildren()
+    @displayChildren()
     @setChanges()
-
-    if @$el.find('ol li').length == 0
-      @$el.find('.toggle-children').hide()
     this
 
   setChanges: ->
