@@ -1,11 +1,18 @@
 class App.views.LayoutView extends Backbone.View
-  initialize: (opts) ->
-    @items = opts.data
+  template: HandlebarsTemplates['layout']
+
+  initialize: (options) ->
+    @items = new App.collections.Items(options.rootItems)
     @render()
 
-  render: ->
-    @$el.html HandlebarsTemplates['layout']()
+  events:
+    'click .save-button': 'saveChanges'
 
-    for item in @items
-      itemView = new App.views.ItemView(item)
-      @$el.find('.main-list').append itemView.render()
+  saveChanges: ->
+    Backbone.Events.trigger('saveChanges')
+
+  render: ->
+    @$el.html(@template())
+    listView = new App.views.ListView(items: @items, parent: null)
+    @$el.find('.main-list').append(listView.render().el)
+    this

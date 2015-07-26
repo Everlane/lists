@@ -1,9 +1,13 @@
-<li class="item">
-  <h2>
-    {{title}}
-  </h2>
+<span class="handle"><i class="fa fa-arrows"></i></span>
 
-  <p>
-    {{content}}
-  </p>
-</li>
+<span class="toggle-children">[-]</span>
+
+<h2 class="uneditable">{{item.title}}</h2>
+<h2 class="editable hide-edit">
+  <input type="text" value="{{item.title}}">
+</h2>
+
+<p class="uneditable">{{item.content}}</p>
+<p class="editable hide-edit">
+  <input type="text" value="{{item.content}}">
+</p>
