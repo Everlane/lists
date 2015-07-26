@@ -1,4 +1,4 @@
 layout = new App.views.LayoutView(
-  data: window.rootItems
+  rootItems: window.rootItems
   el: '.content'
 )
