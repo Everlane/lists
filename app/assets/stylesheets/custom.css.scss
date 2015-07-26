@@ -2,14 +2,35 @@ body {
   font: 14px 'Lato';
 }
 
-.toggle-children {
-  font-size: 9px;
-  color: #999;
-  position: relative;
-  bottom: 4px;
-  margin-left: 5px;
+.item {
+  .toggle-children {
+    font-size: 9px;
+    color: #999;
+    position: relative;
+    bottom: 4px;
+    margin-left: 5px;
+  }
+
+  h2 {
+    display: inline;
+  }
+
+  h2, h2 input {
+    font-family: 'Lato';
+    font-size: 21px;
+    font-weight: 500;
+    border: 0;
+  }
+  p, p input {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .hide-edit {
+    display: none;
+  }
 }
 
-h2 {
-  display: inline;
-}
+// h2 input {
+//   border: 0px;
+// }

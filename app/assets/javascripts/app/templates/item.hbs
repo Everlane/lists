@@ -1,7 +1,9 @@
-<h2>{{item.title}}</h2>
+<h2 class="uneditable">{{item.title}}</h2>
+<h2 class="editable hide-edit"><input type="text" value="{{item.title}}"></h2>
 
 {{#if hasChildren}}
 <span class="toggle-children">{{toggleSwitch}}</span>
 {{/if}}
 
-<p>{{item.content}}</p>
+<p class="uneditable">{{item.content}}</p>
+<p class="editable hide-edit"><input type="text" value="{{item.content}}"></p>

@@ -1,4 +1,5 @@
 class App.views.ItemView extends Backbone.View
+  className: 'item'
   tagName: 'li'
   template: HandlebarsTemplates['item']
 
@@ -9,6 +10,12 @@ class App.views.ItemView extends Backbone.View
 
   events:
     'click .toggle-children': 'toggleChildren'
+    'click h2': 'toggleh2Editable'
+
+
+  toggleh2Editable: (e) ->
+    $(@$el.find('h2.uneditable')[0]).addClass('hide-edit')
+    $(@$el.find('h2.editable')[0]).removeClass('hide-edit')
 
   toggleChildren: ->
     @displayChildren = !@displayChildren
