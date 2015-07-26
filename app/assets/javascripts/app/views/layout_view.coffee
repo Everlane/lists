@@ -13,6 +13,6 @@ class App.views.LayoutView extends Backbone.View
 
   render: ->
     @$el.html(@template())
-    listView = new App.views.ListView(items: @items)
+    listView = new App.views.ListView(items: @items, parent: null)
     @$el.find('.main-list').append(listView.render().el)
     return this

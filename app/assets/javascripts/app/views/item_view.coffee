@@ -9,7 +9,8 @@ class App.views.ItemView extends Backbone.View
     @displayChildren = true
     @hasChildren = false
     @hasChildren = true if @children.length > 0
-    
+    @$el.data('id', @item.id)
+
   events:
     'click .toggle-children': 'toggleChildren'
     'click h2': 'toggleh2Editable'
@@ -28,7 +29,7 @@ class App.views.ItemView extends Backbone.View
     @render()
 
   showChildren: () ->
-    childrenListView = new App.views.ListView(items: @children)
+    childrenListView = new App.views.ListView(items: @children, parent: @item.id)
     @$el.append(childrenListView.render().el)
 
   defineToggleSwitch: ->
