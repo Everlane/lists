@@ -10,6 +10,7 @@ class App.views.ItemView extends Backbone.View
     @hasChildren = false
     @hasChildren = true if @children.length > 0
     @$el.data('id', @item.id)
+    @$el.attr('id', @item.id)
 
   events:
     'click .toggle-children': 'toggleChildren'
