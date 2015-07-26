@@ -6,11 +6,8 @@ class App.views.ItemView extends Backbone.View
   initialize: (options) ->
     @item = options.item
     @children = new App.collections.Items(@item.get('children'))
-    @displayChildren = true
-    @hasChildren = false
-    @hasChildren = true if @children.length > 0
-    @$el.data('id', @item.id)
     @$el.attr('id', @item.id)
+    @displayChildren = true
 
   events:
     'click .toggle-children': 'toggleChildren'
@@ -27,28 +24,33 @@ class App.views.ItemView extends Backbone.View
     $(@$el.find('p.uneditable')[0]).addClass('hide-edit')
     $(@$el.find('p.editable')[0]).removeClass('hide-edit')
 
-  toggleChildren: ->
-    @displayChildren = !@displayChildren
-    @render()
+  toggleChildren: (e) ->
+    e.stopPropagation()
+    @showChildren = !@showChildren
+    if @showChildren then toggleSwitch = '[-]' else toggleSwitch = '[+]'
+
+    $(e.currentTarget).html(toggleSwitch)
+    nextol = $($(e.delegateTarget).find('ol')[0])
+    nextol.toggleClass('hide-children')
+
 
   showChildren: () ->
-    childrenListView = new App.views.ListView(items: @children, parent: @item.id)
+    childrenListView = new App.views.ListView(
+      items: @children,
+      parent: @item.id
+    )
     @$el.append(childrenListView.render().el)
 
-  defineToggleSwitch: ->
-    @toggleSwitch = "[-]" if @displayChildren
-    @toggleSwitch = "[+]" if !@displayChildren
-
   render: ->
-    @defineToggleSwitch()
     content = @template({
-      item: @item.toJSON(),
-      hasChildren: @hasChildren,
-      toggleSwitch: @toggleSwitch
+      item: @item.toJSON()
     })
     @$el.html(content)
-    @showChildren() if @displayChildren
+    @showChildren()
     @setChanges()
+
+    if @$el.find('ol li').length == 0
+      @$el.find('.toggle-children').hide()
     this
 
   setChanges: ->

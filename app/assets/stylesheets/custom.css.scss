@@ -3,6 +3,9 @@ body {
   padding: 50px;
 }
 
+.hide-children {
+  display: none;
+}
 .list {
   min-height: 20px;
 
@@ -18,6 +21,7 @@ body {
     color: #ccc;
     position: relative;
     top: -3px;
+    cursor: move;
   }
 
   .toggle-children {
