@@ -26,8 +26,8 @@ class App.views.ItemView extends Backbone.View
 
   toggleChildren: (e) ->
     e.stopPropagation()
-    @showChildren = !@showChildren
-    if @showChildren then toggleSwitch = '[-]' else toggleSwitch = '[+]'
+    @displayChildren = !@displayChildren
+    if @displayChildren then toggleSwitch = '[-]' else toggleSwitch = '[+]'
 
     $(e.currentTarget).html(toggleSwitch)
     nextol = $($(e.delegateTarget).find('ol')[0])
@@ -38,7 +38,7 @@ class App.views.ItemView extends Backbone.View
     childrenListView = new App.views.ListView(
       items: @children,
       parent: @item.id
-    )
+      )
     @$el.append(childrenListView.render().el)
 
   render: ->
