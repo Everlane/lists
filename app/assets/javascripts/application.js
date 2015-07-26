@@ -18,5 +18,6 @@
 //= require backbone
 //= require handlebars.runtime
 //= require setup
+//= require app/models/item
 //= require_tree ./app
 //= require main
