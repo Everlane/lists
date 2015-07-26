@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Handlebars!!!!
 gem 'handlebars_assets'
+gem 'jquery-ui-rails'
 
 
 group :development, :test do
