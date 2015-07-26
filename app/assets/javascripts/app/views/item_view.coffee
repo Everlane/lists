@@ -42,6 +42,11 @@ class App.views.ItemView extends Backbone.View
     $(@$el.find('h2.editable')[0]).focusout (e) ->
       title = $(e.currentTarget).find('input').val();
       item.set({title: title})
+
+    $(@$el.find('p.editable')[0]).focusout (e) ->
+      content = $(e.currentTarget).find('input').val();
+      item.set({content: content})
+
       # item.save({})
       # item.save({'item': { 'title': title  } });
         # success: ->
