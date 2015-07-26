@@ -5,16 +5,9 @@ class App.views.ListView extends Backbone.View
   initialize: (options) ->
     @items = options.items
     @parent = options.parent
-    @$el.attr('id', @parent)
     @$el.data('parent-id', @parent)
 
-
-  render: ->
-    @items.each (item) =>
-      view = new App.views.ItemView(item: item)
-      @$el.append view.render().el
-
-
+  addSortable: ->
     @$el.sortable
       handle: '.handle'
       connectWith: '.' + @className
@@ -24,14 +17,11 @@ class App.views.ListView extends Backbone.View
         parentId = ui.item.parent().data('parent-id')
         endingPosition = ui.item.index()
         siblings = $(ui.item.parent()).find('li')
-        sibs = []
-
-        siblings.each (idx, item) ->
-          sibs.push($(item).data('id'))
 
         i = 0
-        sibs.forEach (el) ->
-          current = new App.models.Item({id: el})
+        siblings.each (idx, item) ->
+          itemID = $(item).data('id')
+          current = new App.models.Item({id: itemID})
           if i < endingPosition
             current.set({position: i})
           else if i > endingPosition
@@ -43,4 +33,10 @@ class App.views.ListView extends Backbone.View
           position: endingPosition,
           parent_id: parentId
         })
+
+  render: ->
+    @items.each (item) =>
+      view = new App.views.ItemView(item: item)
+      @$el.append view.render().el
+    @addSortable()
     this

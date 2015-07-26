@@ -18,10 +18,12 @@ class App.views.ItemView extends Backbone.View
     'click p': 'togglepEditable'
 
   toggleh2Editable: (e) ->
+    e.stopPropagation()
     $(@$el.find('h2.uneditable')[0]).addClass('hide-edit')
     $(@$el.find('h2.editable')[0]).removeClass('hide-edit')
 
   togglepEditable: (e) ->
+    e.stopPropagation()
     $(@$el.find('p.uneditable')[0]).addClass('hide-edit')
     $(@$el.find('p.editable')[0]).removeClass('hide-edit')
 
@@ -52,9 +54,9 @@ class App.views.ItemView extends Backbone.View
   setChanges: ->
     item = @item
     $(@$el.find('h2.editable')[0]).focusout (e) ->
-      title = $(e.currentTarget).find('input').val();
+      title = $(e.currentTarget).find('input').val()
       item.set({title: title})
 
     $(@$el.find('p.editable')[0]).focusout (e) ->
-      content = $(e.currentTarget).find('input').val();
+      content = $(e.currentTarget).find('input').val()
       item.set({content: content})

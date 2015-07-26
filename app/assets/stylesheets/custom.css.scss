@@ -4,9 +4,22 @@ body {
 }
 
 .list {
-  min-height: 30px;
+  min-height: 20px;
+
+  .placeholder-bg {
+    background: rgb(250, 255, 189);
+    height: 50px;
+    width: 100%;
+  }
 }
 .item {
+  .handle {
+    font-size: 12px;
+    color: #ccc;
+    position: relative;
+    top: -3px;
+  }
+
   .toggle-children {
     font-size: 9px;
     color: #999;
@@ -40,21 +53,4 @@ body {
   .hide-edit {
     display: none;
   }
-
 }
-.handle {
-  font-size: 12px;
-  color: #ccc;
-  position: relative;
-  top: -3px;
-}
-
-.placeholder-bg {
-  background: red;
-  height: 30px;
-  width: 200px;
-}
-
-// h2 input {
-//   border: 0px;
-// }
