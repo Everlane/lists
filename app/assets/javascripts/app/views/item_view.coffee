@@ -11,11 +11,16 @@ class App.views.ItemView extends Backbone.View
   events:
     'click .toggle-children': 'toggleChildren'
     'click h2': 'toggleh2Editable'
+    'click p': 'togglepEditable'
 
 
   toggleh2Editable: (e) ->
     $(@$el.find('h2.uneditable')[0]).addClass('hide-edit')
     $(@$el.find('h2.editable')[0]).removeClass('hide-edit')
+
+  togglepEditable: (e) ->
+    $(@$el.find('p.uneditable')[0]).addClass('hide-edit')
+    $(@$el.find('p.editable')[0]).removeClass('hide-edit')
 
   toggleChildren: ->
     @displayChildren = !@displayChildren

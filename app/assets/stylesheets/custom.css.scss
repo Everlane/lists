@@ -1,5 +1,6 @@
 body {
   font: 14px 'Lato';
+  padding: 50px;
 }
 
 .item {
@@ -22,8 +23,15 @@ body {
     border: 0;
   }
   p, p input {
+    font-family: 'Lato';
     font-size: 14px;
     font-weight: 400;
+    border: 0;
+  }
+
+  input {
+    width: 90%;
+    margin: -2px auto -2px -1px;
   }
 
   .hide-edit {
