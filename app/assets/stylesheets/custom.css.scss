@@ -3,6 +3,9 @@ body {
   padding: 50px;
 }
 
+.list {
+  min-height: 30px;
+}
 .item {
   .toggle-children {
     font-size: 9px;
@@ -37,6 +40,13 @@ body {
   .hide-edit {
     display: none;
   }
+
+}
+
+.placeholder-bg {
+  background: red;
+  height: 30px;
+  width: 200px;
 }
 
 // h2 input {
