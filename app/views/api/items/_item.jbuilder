@@ -1,6 +1,4 @@
-json.id item.id
-json.title item.title
-json.content item.content
+json.extract! item, :id, :title, :content, :position
 json.children do
   json.array!(item.children) do |item|
     json.partial! 'api/items/item', item: item
