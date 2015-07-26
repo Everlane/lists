@@ -17,7 +17,6 @@
 //= require underscore
 //= require backbone
 //= require handlebars.runtime
-//= require handlebars-helpers
 //= require setup
 //= require_tree ./app
 //= require main

@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 
   root to: 'items#index'
   namespace :api do
-    resources :items, only: [:update, :show]
+    resources :items, only: [:update]
   end
 
 end
