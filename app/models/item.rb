@@ -9,6 +9,7 @@ class Item < ActiveRecord::Base
     where(parent_id: nil)
   }
 
+  default_scope { order :position }
   def serialize
     to_json
   end
