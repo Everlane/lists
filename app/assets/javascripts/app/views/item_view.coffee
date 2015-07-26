@@ -7,9 +7,9 @@ class App.views.ItemView extends Backbone.View
     @item = options.item
     @children = new App.collections.Items(@item.get('children'))
     @displayChildren = true
-
-
-
+    @hasChildren = false
+    @hasChildren = true if @children.length > 0
+    
   events:
     'click .toggle-children': 'toggleChildren'
     'click h2': 'toggleh2Editable'
@@ -31,13 +31,23 @@ class App.views.ItemView extends Backbone.View
     childrenListView = new App.views.ListView(items: @children)
     @$el.append(childrenListView.render().el)
 
-  render: ->
-    toggleSwitch = "[-]" if @displayChildren
-    toggleSwitch = "[+]" if !@displayChildren
-    hasChildren = @children.length
+  defineToggleSwitch: ->
+    @toggleSwitch = "[-]" if @displayChildren
+    @toggleSwitch = "[+]" if !@displayChildren
 
-    @$el.html(@template(item: @item.toJSON(), hasChildren: hasChildren, toggleSwitch: toggleSwitch))
+  render: ->
+    @defineToggleSwitch()
+    content = @template({
+      item: @item.toJSON(),
+      hasChildren: @hasChildren,
+      toggleSwitch: @toggleSwitch
+    })
+    @$el.html(content)
     @showChildren() if @displayChildren
+    @setChanges()
+    this
+
+  setChanges: ->
     item = @item
     $(@$el.find('h2.editable')[0]).focusout (e) ->
       title = $(e.currentTarget).find('input').val();
@@ -46,14 +56,3 @@ class App.views.ItemView extends Backbone.View
     $(@$el.find('p.editable')[0]).focusout (e) ->
       content = $(e.currentTarget).find('input').val();
       item.set({content: content})
-
-      # item.save({})
-      # item.save({'item': { 'title': title  } });
-        # success: ->
-        #   debugger
-        #   console.log("here")
-        # error: (models, response) ->
-        #   debugger
-        #   console.log("fail")
-
-    this
