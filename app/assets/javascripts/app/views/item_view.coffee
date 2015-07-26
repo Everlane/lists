@@ -41,8 +41,9 @@ class App.views.ItemView extends Backbone.View
     item = @item
     $(@$el.find('h2.editable')[0]).focusout (e) ->
       title = $(e.currentTarget).find('input').val();
-      # item.set({title: title})
-      item.save({'item': { 'title': title  } }, { type: 'patch' });
+      item.set({title: title})
+      # item.save({})
+      # item.save({'item': { 'title': title  } });
         # success: ->
         #   debugger
         #   console.log("here")
