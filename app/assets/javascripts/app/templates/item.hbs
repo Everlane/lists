@@ -1,5 +1,7 @@
-<span class="toggle-children">{{toggleSwitch}}</span>
-
 <h2>{{item.title}}</h2>
+
+{{#if hasChildren}}
+<span class="toggle-children">{{toggleSwitch}}</span>
+{{/if}}
 
 <p>{{item.content}}</p>

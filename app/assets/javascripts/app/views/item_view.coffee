@@ -19,9 +19,10 @@ class App.views.ItemView extends Backbone.View
     @$el.append(childrenListView.render().el)
 
   render: ->
-    toggleSwitch = "[+]" if @displayChildren
-    toggleSwitch = "[-]" if !@displayChildren
+    toggleSwitch = "[-]" if @displayChildren
+    toggleSwitch = "[+]" if !@displayChildren
+    hasChildren = @children.length
 
-    @$el.html(@template(item: @item.toJSON(), toggleSwitch: toggleSwitch))
+    @$el.html(@template(item: @item.toJSON(), hasChildren: hasChildren, toggleSwitch: toggleSwitch))
     @showChildren() if @displayChildren
     this
