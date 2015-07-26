@@ -8,11 +8,12 @@ class App.views.ItemView extends Backbone.View
     @children = new App.collections.Items(@item.get('children'))
     @displayChildren = true
 
+
+
   events:
     'click .toggle-children': 'toggleChildren'
     'click h2': 'toggleh2Editable'
     'click p': 'togglepEditable'
-
 
   toggleh2Editable: (e) ->
     $(@$el.find('h2.uneditable')[0]).addClass('hide-edit')
@@ -37,4 +38,16 @@ class App.views.ItemView extends Backbone.View
 
     @$el.html(@template(item: @item.toJSON(), hasChildren: hasChildren, toggleSwitch: toggleSwitch))
     @showChildren() if @displayChildren
+    item = @item
+    $(@$el.find('h2.editable')[0]).focusout (e) ->
+      title = $(e.currentTarget).find('input').val();
+      # item.set({title: title})
+      item.save({'item': { 'title': title  } }, { type: 'patch' });
+        # success: ->
+        #   debugger
+        #   console.log("here")
+        # error: (models, response) ->
+        #   debugger
+        #   console.log("fail")
+
     this

@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class Api::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
@@ -11,6 +11,6 @@ class ItemsController < ApplicationController
 
   private
     def item_params
-      params.require(:item).permit(:title, :content, :position)
+      params.require(:item).permit(:parent_id, :title, :content, :position)
     end
 end
