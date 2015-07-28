@@ -6,7 +6,7 @@ class App.views.ItemView extends Backbone.View
   initialize: (options) ->
     @item = options.item
     @children = new App.collections.Items(@item.get('children'))
-    @$el.attr('id', @item.id)
+    @$el.data('item-id', @item.id)
     @showChildren = true
 
   events:

@@ -24,7 +24,7 @@ class App.views.ListView extends Backbone.View
   handleNewPositions: (siblings, endingPosition, parentId, movedId) ->
     i = 0
     siblings.each (idx, item) ->
-      itemID = $(item).attr('id')
+      itemID = $(item).data('item-id')
       current = new App.models.Item({id: itemID})
       if i < endingPosition
         current.set({position: i})
@@ -45,11 +45,11 @@ class App.views.ListView extends Backbone.View
       connectWith: '.' + @className
       placeholder: 'placeholder-bg'
       stop: (event, ui) ->
-        movedId = ui.item.attr('id')
+        movedId = ui.item.data('item-id')
         parentId = ui.item.parent().data('parent-id')
         endingPosition = ui.item.index()
         siblings = $(ui.item.parent()).find('li')
-        originalParentId = $(event.target).parent().attr('id')
+        originalParentId = $(event.target).parent().data('item-id')
         that.handleToggleButton(
           parentId, originalParentId, siblings, endingPosition)
         that.handleNewPositions(
