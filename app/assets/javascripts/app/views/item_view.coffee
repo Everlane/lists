@@ -17,12 +17,12 @@ class App.views.ItemView extends Backbone.View
 
   toggleh2Editable: (e) ->
     e.stopPropagation()
-    $(e.currentTarget).addClass('hide-edit')
+    @$el.find('.item-title.uneditable').addClass('hide-edit')
     @$el.find('.item-title.editable').removeClass('hide-edit')
 
   togglepEditable: (e) ->
     e.stopPropagation()
-    $(e.currentTarget).addClass('hide-edit')
+    @$el.find('.item-content.uneditable').addClass('hide-edit')
     @$el.find('.item-content.editable').removeClass('hide-edit')
 
   toggleChildren: (e) ->
@@ -50,10 +50,10 @@ class App.views.ItemView extends Backbone.View
 
   setChanges: ->
     item = @item
-    $(@$el.find('h2.editable')[0]).focusout (e) ->
+    @$el.find('h2.editable').first().focusout (e) ->
       title = $(e.currentTarget).find('input').val()
       item.set({title: title})
 
-    $(@$el.find('p.editable')[0]).focusout (e) ->
+    @$el.find('p.editable').first().focusout (e) ->
       content = $(e.currentTarget).find('input').val()
       item.set({content: content})
