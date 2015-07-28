@@ -38,20 +38,19 @@ class App.views.ListView extends Backbone.View
     })
 
   addSortable: ->
-    that = this
     @$el.sortable
       handle: '.handle'
       connectWith: '.' + @className
       placeholder: 'placeholder-bg'
-      stop: (event, ui) ->
+      stop: (event, ui) =>
         movedId = ui.item.data('item-id')
         parentId = ui.item.parent().data('parent-id')
         endingPosition = ui.item.index()
         siblings = $(ui.item.parent()).find('li')
         originalParentId = $(event.target).parent().data('item-id')
-        that.handleToggleButton(
+        @handleToggleButton(
           parentId, originalParentId, siblings, endingPosition)
-        that.handleNewPositions(
+        @handleNewPositions(
           siblings, endingPosition, parentId, movedId)
 
   render: ->
