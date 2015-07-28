@@ -37,6 +37,7 @@ class App.views.ItemView extends Backbone.View
   render: ->
     content = @template(item: @item.toJSON())
     @$el.html(content)
+    
     childrenListView = new App.views.ListView(
       items: @children,
       parent: @item.id
@@ -45,10 +46,8 @@ class App.views.ItemView extends Backbone.View
 
     if @$el.find('ol li').length == 0
       @$el.find('.toggle-children').hide()
-    @setChanges()
-    this
 
-  setChanges: ->
+    # add listener for changes in title and content
     item = @item
     @$el.find('h2.editable').first().focusout (e) ->
       title = $(e.currentTarget).find('input').val()
@@ -57,3 +56,4 @@ class App.views.ItemView extends Backbone.View
     @$el.find('p.editable').first().focusout (e) ->
       content = $(e.currentTarget).find('input').val()
       item.set({content: content})
+    this
