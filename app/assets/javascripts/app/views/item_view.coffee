@@ -7,22 +7,23 @@ class App.views.ItemView extends Backbone.View
     @item = options.item
     @children = new App.collections.Items(@item.get('children'))
     @$el.data('item-id', @item.id)
+    @$el.attr('id', 'item-' + @item.id)
     @showChildren = true
 
   events:
     'click .toggle-children': 'toggleChildren'
-    'click h2': 'toggleh2Editable'
-    'click p': 'togglepEditable'
+    'click .item-title': 'toggleh2Editable'
+    'click .item-content': 'togglepEditable'
 
   toggleh2Editable: (e) ->
     e.stopPropagation()
-    $(@$el.find('h2.uneditable')[0]).addClass('hide-edit')
-    $(@$el.find('h2.editable')[0]).removeClass('hide-edit')
+    $(e.currentTarget).addClass('hide-edit')
+    @$el.find('.item-title.editable').removeClass('hide-edit')
 
   togglepEditable: (e) ->
     e.stopPropagation()
-    $(@$el.find('p.uneditable')[0]).addClass('hide-edit')
-    $(@$el.find('p.editable')[0]).removeClass('hide-edit')
+    $(e.currentTarget).addClass('hide-edit')
+    @$el.find('.item-content.editable').removeClass('hide-edit')
 
   toggleChildren: (e) ->
     e.stopPropagation()
@@ -30,10 +31,12 @@ class App.views.ItemView extends Backbone.View
     if @showChildren then toggleSwitch = '[-]' else toggleSwitch = '[+]'
 
     $(e.currentTarget).html(toggleSwitch)
-    nextol = $($(e.delegateTarget).find('ol')[0])
+    nextol = $(e.delegateTarget).find('ol').first()
     nextol.toggleClass('hide-children')
 
-  displayChildren: () ->
+  render: ->
+    content = @template(item: @item.toJSON())
+    @$el.html(content)
     childrenListView = new App.views.ListView(
       items: @children,
       parent: @item.id
@@ -42,13 +45,6 @@ class App.views.ItemView extends Backbone.View
 
     if @$el.find('ol li').length == 0
       @$el.find('.toggle-children').hide()
-
-  render: ->
-    content = @template({
-      item: @item.toJSON()
-    })
-    @$el.html(content)
-    @displayChildren()
     @setChanges()
     this
 
