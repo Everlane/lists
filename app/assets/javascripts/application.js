@@ -12,10 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/sortable
 //= require turbolinks
 //= require underscore
 //= require backbone
 //= require handlebars.runtime
 //= require setup
-//= require_tree ./app
+//= require_tree ./app/models
+//= require_tree ./app/collections
+//= require_tree ./app/templates
+//= require_tree ./app/views
 //= require main
